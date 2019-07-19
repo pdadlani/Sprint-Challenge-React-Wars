@@ -8,18 +8,12 @@ const CardStyle = styled.div`
 `;
 
 export default function StarWarsCard(props) {
-  console.log('props', props);
+  // console.log('props', props);
 
-  
-  // function numberFilms({props}) {
-  //   return props.data.films
-  // }
-  // console.log('films', numberFilms.length);
   return (
     <CardStyle>
       <h1>{props.data.name}</h1>
       <p>Born: {props.data.birth_year}</p>
-      {/* <p>{numberFilms.length()}</p> */}
     </CardStyle>
   )
 }
