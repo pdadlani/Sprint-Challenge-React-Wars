@@ -7,17 +7,19 @@ export default function StarWarsGrid() {
   const [data, setData] = useState();
   const [index, setIndex] = useState(1);
   
-  function assignIndex(iterator) {
-    if (index === 1 && iterator === -1) {
-      return 10
-    } else if (index === 10 && iterator === 1) {
-      return 1
-    }
-    return index + iterator
-  }
+  // function assignIndex(iterator) {
+  //   if (index === 1 && iterator === -1) {
+  //     return 10
+  //   } else if (index === 10 && iterator === 1) {
+  //     return 1
+  //   }
+  //   return index + iterator
+  // }
   
-  const prevIndex = assignIndex(-1),
-    nextIndex = assignIndex(1);
+  // const prevIndex = assignIndex(-1),
+  //   nextIndex = assignIndex(1);
+
+
 
   useEffect(() => {
     axios
@@ -39,7 +41,8 @@ export default function StarWarsGrid() {
   //     );
   //   }
   // }
-  
+  // const prevPage = data.previous;
+  // const nextPage = data.next;
 
   console.log('data in Grid', data)
   console.log('index', index)
@@ -52,15 +55,23 @@ export default function StarWarsGrid() {
         <div>Loading...</div>
       ) : (
         <div>
-          Testing
-
-          
+          <Button text={'previous'} onClick={() => {
+            setData(data.previous)
+          }} />
           {/* <Button text={'previous'} onClick={() => {
             // console.log('previous was clicked')
             (index===1) ? 
               (setIndex(10)) : 
               (setIndex(prevIndex)
             )}} /> */}
+          {data.results.map(character => {
+            return <StarWarsCard data={character} />
+          })}
+
+          <Button text={'next'} onClick={() => {
+              setData(data.next)
+            }}
+          />
           {/* {Object.keys(data.results).forEach(character => 
             <StarWarsCard data={character} />  )} */}
           
